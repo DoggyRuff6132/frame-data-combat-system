@@ -1,5 +1,6 @@
 @tool
 extends Area2D
+class_name AttackFrameData
 
 @export_category("Buttons")
 @export var add_frame_data = false

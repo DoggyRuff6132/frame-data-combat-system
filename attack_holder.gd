@@ -17,6 +17,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and not get_attacking():
 		animation_player.play("MeleeAttacks/" + str(attacks[attack_number].animation_name))
 		set_attack_active(true)
+		NextAttack()
+
+func NextAttack():
+	attack_number += 1
+	if attack_number == attacks.size():
+		attack_number = 0
 
 func get_attacking() -> bool:
 	return attacking
