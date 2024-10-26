@@ -11,6 +11,8 @@ class_name AttackFrameDataCollider
 @export var insert_frame_after: bool: set = set_insert_frame_after
 @export var insert_hitbox_before: bool: set = set_insert_hitbox_before
 @export var insert_hitbox_after: bool: set = set_insert_hitbox_after
+@export var show_all : bool : set = ShowAll
+@export var hide_all : bool : set = HideAll
 
 @export_category("Stats")
 @export var damage_multiplier = 1
@@ -55,3 +57,9 @@ func rename(total_hitboxes : int):
 		node_name += "frame_" + str(hitbox_number)
 	
 	name = node_name
+
+func ShowAll(value):
+	get_parent().ShowAll(value)
+
+func HideAll(value):
+	get_parent().HideAll(value)

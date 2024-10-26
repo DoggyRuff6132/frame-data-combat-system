@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8km3wk4ifl2x"]
+[gd_scene load_steps=26 format=3 uid="uid://b8km3wk4ifl2x"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bihfk"]
 [ext_resource type="Texture2D" uid="uid://bdyefm4soh2ap" path="res://CharacterPack-Version1/Character-Weapon/Character-Idle-1.png" id="1_guevf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ur47bhsdbps" path="res://CharacterPack-Version1/Character-Weapon/Character-run-weapon.png" id="5_bq3j2"]
 [ext_resource type="Script" path="res://attack_holder.gd" id="6_yreqj"]
 [ext_resource type="Script" path="res://AttackFrameData.gd" id="8_skvb4"]
+[ext_resource type="Script" path="res://AttackFrameDataCollider.gd" id="9_kx5w3"]
 
 [sub_resource type="Animation" id="Animation_a3o7e"]
 length = 0.001
@@ -100,8 +101,8 @@ tracks/3/path = NodePath("../AttackHolder/Slash")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"NextFrame"
@@ -111,6 +112,9 @@ tracks/3/keys = {
 }, {
 "args": [],
 "method": &"NextFrame"
+}, {
+"args": [true],
+"method": &"HideAll"
 }, {
 "args": [],
 "method": &"ResetFrameNumber"
@@ -438,6 +442,18 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y3rrh"]
 height = 44.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xin0n"]
+radius = 3.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g720v"]
+radius = 4.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3dafi"]
+radius = 3.0
+height = 40.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_bihfk")
 
@@ -472,5 +488,34 @@ animation_player = NodePath("../AnimationHandler/AnimationPlayer")
 [node name="Slash" type="Area2D" parent="AttackHolder"]
 script = ExtResource("8_skvb4")
 animation_name = "Slash"
+
+[node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
+position = Vector2(17, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xin0n")
+debug_color = Color(1, 0, 0, 0.313726)
+script = ExtResource("9_kx5w3")
+show_all = null
+hide_all = null
+
+[node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
+position = Vector2(24, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g720v")
+debug_color = Color(1, 0, 0, 0.313726)
+script = ExtResource("9_kx5w3")
+attack_frame_number = 1
+show_all = null
+hide_all = null
+
+[node name="2-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
+position = Vector2(22, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3dafi")
+debug_color = Color(1, 0, 0, 0.313726)
+script = ExtResource("9_kx5w3")
+attack_frame_number = 2
+show_all = null
+hide_all = null
 
 [connection signal="animation_finished" from="AnimationHandler/AnimationPlayer" to="AnimationHandler" method="_on_animation_player_animation_finished"]

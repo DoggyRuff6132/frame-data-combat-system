@@ -18,7 +18,7 @@ extends Area2D
 
 var in_game_frame_number = 0
 
-@export var attack_frames = []
+var attack_frames = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,8 +27,29 @@ func _ready() -> void:
 	collision_mask = 1
 	
 	in_game_frame_number = 0
-
-
+	
+	SetAttackFrameArray()
+	
+func SetAttackFrameArray():
+	var children = get_children()
+	attack_frames.clear()
+	
+	var width = 0
+	var height = 0
+	for child in children:
+		if width < child.attack_frame_number:
+			width = child.attack_frame_number
+		if height < child.hitbox_number:
+			height = child.hitbox_number
+	
+	#make 2d array
+	for i in width + 1:
+		attack_frames.append([])
+	
+	for child in children:
+		attack_frames[child.attack_frame_number].insert(child.hitbox_number, child)
+		child.visible = false
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -45,19 +66,20 @@ func _process(delta: float) -> void:
 			reset_frame_data1 = false
 			reset_frame_data2 = false
 
-
 func ResetFrameNumber():
 	in_game_frame_number = 0
 
 func NextFrame():
-	for frame in attack_frames[in_game_frame_number-1]:
-		frame.visible = false
-	
-	for frame in attack_frames[in_game_frame_number]:
-		frame.visible = true
+	if in_game_frame_number != 0:
+		var previous_frame = attack_frames[in_game_frame_number-1]
+		for i in range(previous_frame.size()):
+			previous_frame[i].visible = false
+			
+	var current_frame = attack_frames[in_game_frame_number]
+	for i in range(current_frame.size()):
+		current_frame[i].visible = true
 	
 	in_game_frame_number += 1
-
 
 
 func AddFrameData() -> Array:
