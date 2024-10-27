@@ -35,8 +35,8 @@ func SetAttackFrameArray():
 	var children = get_children()
 	attack_frames.clear()
 	
-	var width = 0
-	var height = 0
+	var width = -1
+	var height = -1
 	for child in children:
 		if width < child.attack_frame_number:
 			width = child.attack_frame_number
@@ -44,10 +44,14 @@ func SetAttackFrameArray():
 			height = child.hitbox_number
 	
 	#make 2d array
-	for i in width + 1:
+	for i in width+1:
 		attack_frames.append([])
 	
+	print(width)
+	print(height)
+	
 	for child in children:
+		print(name + " " + str(child.attack_frame_number))
 		attack_frames[child.attack_frame_number].insert(child.hitbox_number, child)
 		child.visible = false
 	
