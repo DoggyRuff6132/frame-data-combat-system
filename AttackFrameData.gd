@@ -20,12 +20,16 @@ class_name AttackFrameData
 var in_game_frame_number = 0
 
 var attack_frames = []
+var already_attacked = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#change these depending on default hitboxes
-	collision_layer = 1
-	collision_mask = 1
+	set_collision_layer_value(3, true)
+	set_collision_mask_value(6, true)
+	
+	for child in get_children():
+		child.disabled = true
 	
 	in_game_frame_number = 0
 	
@@ -47,11 +51,7 @@ func SetAttackFrameArray():
 	for i in width+1:
 		attack_frames.append([])
 	
-	print(width)
-	print(height)
-	
 	for child in children:
-		print(name + " " + str(child.attack_frame_number))
 		attack_frames[child.attack_frame_number].insert(child.hitbox_number, child)
 		child.visible = false
 	
@@ -73,19 +73,23 @@ func _process(delta: float) -> void:
 
 func ResetFrameNumber():
 	in_game_frame_number = 0
+	already_attacked.clear()
 
 func NextFrame():
 	if in_game_frame_number != 0:
 		var previous_frame = attack_frames[in_game_frame_number-1]
 		for i in range(previous_frame.size()):
-			previous_frame[i].visible = false
+			var hitbox = previous_frame[i]
+			hitbox.visible = false
+			hitbox.disabled = true
 			
 	var current_frame = attack_frames[in_game_frame_number]
 	for i in range(current_frame.size()):
-		current_frame[i].visible = true
+		var hitbox = current_frame[i]
+		hitbox.visible = true
+		hitbox.disabled = false
 	
 	in_game_frame_number += 1
-
 
 func AddFrameData() -> Array:
 	var colliders = []
@@ -111,7 +115,6 @@ func AddFrameData() -> Array:
 	add_frame_data = false
 	add_empty_frame_data = false
 	return colliders
-
 
 func RemoveFrame(frame : int, hitbox : int):
 	if hitbox == -1:
@@ -178,10 +181,25 @@ func ShowAll(value):
 	if value:
 		for child in get_children():
 			child.visible = true
-	hide_all = false
+			child.disabled = false
+	show_all = false
 
 func HideAll(value):
 	if value:
 		for child in get_children():
 			child.visible = false
+			child.disabled = true
 	hide_all = false
+
+func AlreadyAttackedBody(body, multi_hit_number) -> bool:
+	if already_attacked.size() > multi_hit_number:
+		for target in already_attacked[multi_hit_number]:
+			if body == target:
+				return true
+		
+		already_attacked[multi_hit_number].append(body)
+	else:
+		already_attacked.append([body])
+	
+	print("hit " + name)
+	return false

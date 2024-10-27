@@ -10,13 +10,12 @@ var just_finished_anim := ""
 var played_jump_trans = false
 var played_fall_trans = false
 
-var is_attacking = false
-
 func _process(delta: float) -> void:
-	if player.direction == 1:
-		sprite.flip_h = false
-	elif player.direction == -1:
-		sprite.flip_h = true
+	if !attack_holder.attacking:
+		if player.direction == 1:
+			sprite.flip_h = false
+		elif player.direction == -1:
+			sprite.flip_h = true
 	
 	if not attack_holder.get_attacking():
 		if player.velocity.y < -jump_deadzone:

@@ -629,6 +629,7 @@ radius = 9.0
 height = 22.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 59
 script = ExtResource("1_bihfk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -655,11 +656,14 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y3rrh")
 
-[node name="AttackHolder" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
+[node name="AttackHolder" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "animation_player")]
 script = ExtResource("6_yreqj")
+sprite = NodePath("../AnimationHandler/Sprite2D")
 animation_player = NodePath("../AnimationHandler/AnimationPlayer")
 
 [node name="Thrust" type="Area2D" parent="AttackHolder"]
+collision_layer = 4
+collision_mask = 32
 script = ExtResource("8_skvb4")
 animation_name = "Thrust"
 
@@ -670,6 +674,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xin0n")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Thrust"]
 visible = false
@@ -679,6 +685,8 @@ shape = SubResource("CapsuleShape2D_g720v")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [node name="2-single_frame" type="CollisionShape2D" parent="AttackHolder/Thrust"]
 visible = false
@@ -688,8 +696,12 @@ shape = SubResource("CapsuleShape2D_3dafi")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 2
+multi_hit_number = null
+hit_priority = null
 
 [node name="Slash" type="Area2D" parent="AttackHolder"]
+collision_layer = 4
+collision_mask = 32
 script = ExtResource("8_skvb4")
 animation_name = "Slash"
 
@@ -700,6 +712,8 @@ rotation = -0.821394
 shape = SubResource("CapsuleShape2D_qfc28")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
 visible = false
@@ -708,8 +722,12 @@ shape = SubResource("CapsuleShape2D_445st")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [node name="Slice" type="Area2D" parent="AttackHolder"]
+collision_layer = 4
+collision_mask = 32
 script = ExtResource("8_skvb4")
 animation_name = "Slice"
 
@@ -719,6 +737,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_uku03")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Slice"]
 position = Vector2(30, -13)
@@ -726,5 +746,7 @@ shape = SubResource("CapsuleShape2D_7g5ic")
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [connection signal="animation_finished" from="AnimationHandler/AnimationPlayer" to="AnimationHandler" method="_on_animation_player_animation_finished"]

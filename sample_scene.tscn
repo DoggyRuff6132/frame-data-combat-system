@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgyl1a2hw5nc7"]
+[gd_scene load_steps=4 format=3 uid="uid://dgyl1a2hw5nc7"]
 
 [ext_resource type="PackedScene" uid="uid://b8km3wk4ifl2x" path="res://player.tscn" id="1_swluy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u107"]
 size = Vector2(431, 20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uqq2"]
+
 [node name="SampleScene" type="Node2D"]
 
 [node name="floor" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
 position = Vector2(-0.5, 0)
@@ -15,3 +19,11 @@ shape = SubResource("RectangleShape2D_8u107")
 
 [node name="Player" parent="." instance=ExtResource("1_swluy")]
 position = Vector2(-1, -33)
+
+[node name="David the Circle" type="CharacterBody2D" parent="."]
+position = Vector2(49, -35)
+collision_layer = 32
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="David the Circle"]
+shape = SubResource("CircleShape2D_7uqq2")

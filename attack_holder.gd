@@ -2,15 +2,12 @@ extends Node2D
 class_name AttackHolder
 var attacking = false
 
+@export var sprite : Sprite2D
+
 var attack_number = 0
 @onready var attacks = get_children()
 
 @export var animation_player : AnimationPlayer
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,6 +15,8 @@ func _process(delta: float) -> void:
 		animation_player.play("MeleeAttacks/" + str(attacks[attack_number].animation_name))
 		set_attack_active(true)
 		NextAttack()
+	
+	scale.x = -1 if sprite.flip_h else 1
 
 func NextAttack():
 	attack_number += 1

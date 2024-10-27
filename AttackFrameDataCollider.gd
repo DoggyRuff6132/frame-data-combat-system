@@ -2,8 +2,10 @@
 extends CollisionShape2D
 class_name AttackFrameDataCollider
 
-@export var attack_frame_number : int
-@export var hitbox_number : int
+@export var attack_frame_number : int #if there are multiple active frames. 
+@export var multi_hit_number : int #one attack can damage multiple times, this is an identifier
+@export var hit_priority : int = 100 #if two attack frames hit at the same time, higher hit priority does damage
+@export var hitbox_number : int # if one active frame has multiple hitboxes.
 
 @export_category("buttons")
 @export var remove_frame: bool : set = set_remove_frame
@@ -20,7 +22,13 @@ class_name AttackFrameDataCollider
 @export var impact_multiplier = 1
 #@export var debuff
 
-#var attack_frame_data_parent
+
+func _ready():
+	get_parent().body_entered.connect(hit_enemy_with_attack)
+
+
+func hit_enemy_with_attack(enemy):
+	get_parent().AlreadyAttackedBody(enemy, multi_hit_number)
 
 func set_remove_frame(value):
 	if value == true:
