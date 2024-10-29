@@ -2,6 +2,8 @@
 extends Area2D
 class_name AttackFrameData
 
+@export var attack_type : AttackType
+
 @export_category("Buttons")
 @export var add_frame_data = false
 @export var add_empty_frame_data = false
@@ -12,10 +14,17 @@ class_name AttackFrameData
 @export var hide_all : bool : set = HideAll
 
 @export_category("Stats")
-@export var animation_name = "none"
-@export var damage = 100
-@export var knockback = 1
-@export var impact = 1
+@export var damage : int = 100
+@export var knockback : int = 1
+@export var impact : int = 1
+
+func get_damage() -> int:
+	return round(damage)
+func get_knockback() -> int:
+	return round(knockback)
+func get_impact() -> int:
+	return round(impact)
+
 
 var in_game_frame_number = 0
 
@@ -25,6 +34,8 @@ var already_attacked = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#change these depending on default hitboxes
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
 	set_collision_layer_value(3, true)
 	set_collision_mask_value(6, true)
 	
@@ -70,6 +81,8 @@ func _process(delta: float) -> void:
 				child.queue_free()
 			reset_frame_data1 = false
 			reset_frame_data2 = false
+	
+	
 
 func ResetFrameNumber():
 	in_game_frame_number = 0
@@ -201,5 +214,15 @@ func AlreadyAttackedBody(body, multi_hit_number) -> bool:
 	else:
 		already_attacked.append([body])
 	
-	print("hit " + name)
+	print(name + " did " + str(get_damage()) + " to body: "+ str(body))
 	return false
+
+#region check attack type
+enum AttackType{
+	Normal,
+	Charge
+}
+
+func GetAttackType() -> AttackType:
+	return attack_type
+#endregion

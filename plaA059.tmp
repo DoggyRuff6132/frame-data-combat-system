@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b8km3wk4ifl2x"]
+[gd_scene load_steps=42 format=3 uid="uid://b8km3wk4ifl2x"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bihfk"]
 [ext_resource type="Texture2D" uid="uid://bdyefm4soh2ap" path="res://CharacterPack-Version1/Character-Weapon/Character-Idle-1.png" id="1_guevf"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://do7wrpapbmok1" path="res://CharacterPack-Version1/Character-Weapon/Character-dash-1.png" id="7_tkywh"]
 [ext_resource type="Script" path="res://AttackFrameData.gd" id="8_skvb4"]
 [ext_resource type="Script" path="res://AttackFrameDataCollider.gd" id="9_kx5w3"]
-[ext_resource type="Script" path="res://ChargeAttackFrameData.gd" id="13_ptdpo"]
 
 [sub_resource type="Animation" id="Animation_a3o7e"]
 length = 0.001
@@ -56,6 +55,242 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rn5v"]
 _data = {
 "RESET": SubResource("Animation_a3o7e")
+}
+
+[sub_resource type="Animation" id="Animation_lxxl5"]
+resource_name = "Slash"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_2p1n8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AttackHolder/Slash")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [true],
+"method": &"HideAll"
+}, {
+"args": [],
+"method": &"ResetFrameNumber"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AttackHolder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack_active"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2uhbp"]
+resource_name = "Slash"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_vs18h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AttackHolder/Thrust")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [true],
+"method": &"HideAll"
+}, {
+"args": [],
+"method": &"ResetFrameNumber"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AttackHolder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack_active"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_51tkn"]
+resource_name = "Slice"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_f8uow")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AttackHolder/Slice")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [],
+"method": &"NextFrame"
+}, {
+"args": [true],
+"method": &"HideAll"
+}, {
+"args": [],
+"method": &"ResetFrameNumber"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AttackHolder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack_active"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_s1u5p"]
@@ -147,401 +382,13 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
-"method": &"set_attack"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_klg36"]
-resource_name = "Lunge"
-length = 2.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_vs18h")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [6, 1, 2]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AttackHolder/Lunge")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1, 2),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"AddCharge"
-}, {
-"args": [],
-"method": &"AddCharge"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AttackHolder")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_charge"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_8mbvd"]
-resource_name = "LungeEND"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_vs18h")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 5, 6]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AttackHolder/Lunge")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [true],
-"method": &"HideAll"
-}, {
-"args": [],
-"method": &"ResetFrameNumber"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AttackHolder")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_lxxl5"]
-resource_name = "Slash"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_2p1n8")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [2, 3, 4, 5, 6]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AttackHolder/Slash")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [true],
-"method": &"HideAll"
-}, {
-"args": [],
-"method": &"ResetFrameNumber"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AttackHolder")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_51tkn"]
-resource_name = "Slice"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_f8uow")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [9]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AttackHolder/Slice")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.4, 0.5, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [true],
-"method": &"HideAll"
-}, {
-"args": [],
-"method": &"ResetFrameNumber"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AttackHolder")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_2uhbp"]
-resource_name = "Slash"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_vs18h")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AttackHolder/Thrust")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [],
-"method": &"NextFrame"
-}, {
-"args": [true],
-"method": &"HideAll"
-}, {
-"args": [],
-"method": &"ResetFrameNumber"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AttackHolder")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
+"method": &"set_attack_active"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1py34"]
 _data = {
 "Flurry": SubResource("Animation_s1u5p"),
-"Lunge": SubResource("Animation_klg36"),
-"LungeEND": SubResource("Animation_8mbvd"),
 "Slash": SubResource("Animation_lxxl5"),
 "Slice": SubResource("Animation_51tkn"),
 "Thrust": SubResource("Animation_2uhbp")
@@ -934,63 +781,71 @@ animation_player = NodePath("../AnimationHandler/AnimationPlayer")
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("8_skvb4")
+animation_name = "Thrust"
 
 [node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Thrust"]
 visible = false
 position = Vector2(17, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xin0n")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Thrust"]
 visible = false
 position = Vector2(24, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g720v")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [node name="2-single_frame" type="CollisionShape2D" parent="AttackHolder/Thrust"]
 visible = false
 position = Vector2(22, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3dafi")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 2
+multi_hit_number = null
+hit_priority = null
 
 [node name="Slash" type="Area2D" parent="AttackHolder"]
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("8_skvb4")
+animation_name = "Slash"
 
 [node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
 visible = false
 position = Vector2(10, -7)
 rotation = -0.821394
 shape = SubResource("CapsuleShape2D_qfc28")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Slash"]
 visible = false
 position = Vector2(23, 9)
 shape = SubResource("CapsuleShape2D_445st")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [node name="Slice" type="Area2D" parent="AttackHolder"]
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("8_skvb4")
+animation_name = "Slice"
 
 [node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Slice"]
 visible = false
@@ -1000,6 +855,8 @@ shape = SubResource("CapsuleShape2D_uku03")
 disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
+multi_hit_number = null
+hit_priority = null
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Slice"]
 visible = false
@@ -1009,32 +866,32 @@ disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
+multi_hit_number = null
+hit_priority = null
 
 [node name="Flurry" type="Area2D" parent="AttackHolder"]
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("8_skvb4")
+animation_name = "Flurry"
 
 [node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Flurry"]
 visible = false
 position = Vector2(17, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_djxha")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 
 [node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Flurry"]
 visible = false
 shape = SubResource("CapsuleShape2D_odyc4")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 1
 
 [node name="2-empty" type="CollisionShape2D" parent="AttackHolder/Flurry"]
 visible = false
-disabled = true
 script = ExtResource("9_kx5w3")
 attack_frame_number = 2
 
@@ -1043,7 +900,6 @@ visible = false
 position = Vector2(9, -6)
 rotation = 2.79642
 shape = SubResource("CapsuleShape2D_cn40m")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 3
@@ -1053,7 +909,6 @@ multi_hit_number = 1
 visible = false
 position = Vector2(24, 9)
 shape = SubResource("CapsuleShape2D_6wdfh")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 4
@@ -1061,7 +916,6 @@ multi_hit_number = 1
 
 [node name="5-empty" type="CollisionShape2D" parent="AttackHolder/Flurry"]
 visible = false
-disabled = true
 script = ExtResource("9_kx5w3")
 attack_frame_number = 5
 
@@ -1070,7 +924,6 @@ visible = false
 position = Vector2(11, -3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4tr2i")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 6
@@ -1080,34 +933,9 @@ multi_hit_number = 2
 visible = false
 position = Vector2(31, -13)
 shape = SubResource("CapsuleShape2D_gktc3")
-disabled = true
 debug_color = Color(1, 0, 0, 0.313726)
 script = ExtResource("9_kx5w3")
 attack_frame_number = 7
 multi_hit_number = 2
-
-[node name="Lunge" type="Area2D" parent="AttackHolder"]
-collision_layer = 4
-collision_mask = 32
-script = ExtResource("13_ptdpo")
-max_charge_level = 2
-attack_type = 1
-
-[node name="0-single_frame" type="CollisionShape2D" parent="AttackHolder/Lunge"]
-visible = false
-position = Vector2(17, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_xin0n")
-debug_color = Color(1, 0, 0, 0.313726)
-script = ExtResource("9_kx5w3")
-
-[node name="1-single_frame" type="CollisionShape2D" parent="AttackHolder/Lunge"]
-visible = false
-position = Vector2(23, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_g720v")
-debug_color = Color(1, 0, 0, 0.313726)
-script = ExtResource("9_kx5w3")
-attack_frame_number = 1
 
 [connection signal="animation_finished" from="AnimationHandler/AnimationPlayer" to="AnimationHandler" method="_on_animation_player_animation_finished"]

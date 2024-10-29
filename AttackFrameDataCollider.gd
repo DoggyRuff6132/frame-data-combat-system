@@ -22,13 +22,12 @@ class_name AttackFrameDataCollider
 @export var impact_multiplier = 1
 #@export var debuff
 
-
 func _ready():
 	get_parent().body_entered.connect(hit_enemy_with_attack)
 
-
 func hit_enemy_with_attack(enemy):
-	get_parent().AlreadyAttackedBody(enemy, multi_hit_number)
+	if !disabled:
+		get_parent().AlreadyAttackedBody(enemy, multi_hit_number)
 
 func set_remove_frame(value):
 	if value == true:
@@ -66,8 +65,8 @@ func rename(total_hitboxes : int):
 	
 	name = node_name
 
-func ShowAll(value):
-	get_parent().ShowAll(value)
+func ShowAll(value : bool):
+	get_parent().ShowAll(true)
 
-func HideAll(value):
-	get_parent().HideAll(value)
+func HideAll(value : bool):
+	get_parent().HideAll(true)
